@@ -4,7 +4,7 @@
 
 Modern compilers and CPUs aggressively reorder instructions for performance. In a single thread this is invisible, but across threads it causes races. `acquire`/`release` are the surgical tool that prevents exactly the reorderings that break a ring buffer.
 
----
+
 
 ## What `release` and `acquire` actually guarantee
 
@@ -16,7 +16,7 @@ Modern compilers and CPUs aggressively reorder instructions for performance. In 
 
 Together they form a **synchronizes-with** relationship — a causal happens-before edge across threads.
 
----
+
 
 ## A Minimal SPSC Buffer
 
@@ -53,7 +53,7 @@ struct SPSCQueue {
 };
 ```
 
----
+
 
 ## Why each ordering is necessary
 
@@ -82,7 +82,7 @@ The `acquire` acts as a **one-way fence**: no loads/stores after it can be moved
 
 The consumer's `release` on `tail` (6) pairs with this. It ensures the producer sees that the slot has truly been **consumed** before overwriting it. Without it, the producer could wrap around and clobber a slot the consumer is still reading.
 
----
+
 
 ## What goes wrong with `relaxed` everywhere
 
@@ -95,13 +95,13 @@ The consumer's `release` on `tail` (6) pairs with this. It ensures the producer 
 
 All of these are **data races** — undefined behavior in C++, and real corruption on weakly-ordered architectures (ARM, POWER, RISC-V).
 
----
+
 
 ## A note on x86
 
 On x86, the hardware memory model is **TSO (Total Store Order)** — stores are never reordered with other stores, and loads are never reordered with other loads. So `relaxed` *often works in practice* on x86, which is exactly why these bugs are so insidious: they **hide on x86 and explode on ARM**. The `acquire`/`release` pairs compile to plain `MOV` on x86 anyway (zero extra cost), so there's no reason not to use them.
 
----
+
 
 ## The one-sentence summary
 
