@@ -104,7 +104,7 @@ cmake --build build
 ### Run the tests
 
 ```bash
-cd build && ctest --output-on-failure
+cd build/tests && ctest --output-on-failure
 ```
 
 ---
