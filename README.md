@@ -202,7 +202,7 @@ cd build-tsan && ctest
 - [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
 - Herb Sutter — [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
 - Peter Mbanugo — [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
-- Paul E. McKenney — *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, (Release v2023.06.11a)[https://arxiv.org/abs/1701.00854]
+- Paul E. McKenney — *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, [Release v2023.06.11a](https://arxiv.org/abs/1701.00854)
 
 ---
 
