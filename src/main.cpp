@@ -10,7 +10,7 @@ static constexpr int    SENTINEL   = -1;         // signals "no more items"
 int main() {
     SPSCQueue<int, QUEUE_CAP> q;
 
-    // ── Producer ──────────────────────────────────────────────────────────────
+    // ---- Producer ----
     std::thread producer([&] {
         for (int i = 0; i < ITEM_COUNT; ++i)
             q.push_blocking(i);
@@ -19,7 +19,7 @@ int main() {
         std::cout << "[producer] sent " << ITEM_COUNT << " items + sentinel\n";
     });
 
-    // ── Consumer ──────────────────────────────────────────────────────────────
+    // ---- Consumer ----
     std::thread consumer([&] {
         long long sum      = 0;
         int       received = 0;
