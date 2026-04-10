@@ -1,0 +1,457 @@
+#include <gtest/gtest.h>
+
+#include <atomic>
+#include <chrono>
+#include <cstddef>
+#include <numeric>
+#include <thread>
+#include <vector>
+
+#include "../include/spsc_queue.hpp"
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Barrier: makes N threads start work simultaneously.
+struct Barrier {
+    explicit Barrier(int n) : total_(n) {}
+
+    void arrive_and_wait() {
+        arrived_.fetch_add(1, std::memory_order_acq_rel);
+        while (arrived_.load(std::memory_order_acquire) < total_)
+            std::this_thread::yield();
+    }
+
+private:
+    int              total_;
+    std::atomic<int> arrived_{0};
+};
+
+// Wall-clock deadline helper.
+inline auto deadline(std::chrono::milliseconds ms) {
+    return std::chrono::steady_clock::now() + ms;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Test fixture
+// ─────────────────────────────────────────────────────────────────────────────
+
+class SPSCQueueStressTest : public ::testing::Test {};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. Basic ordering: every pushed value is popped in order, no items lost
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, OrderingAndNoLoss) {
+    constexpr size_t  Q_SIZE    = 64;
+    constexpr int     MSG_COUNT = 1'000'000;
+    SPSCQueue<int, Q_SIZE> q;
+
+    std::atomic<bool> producer_done{false};
+    std::vector<int>  received;
+    received.reserve(MSG_COUNT);
+
+    std::thread producer([&] {
+        for (int i = 0; i < MSG_COUNT; ++i) q.push_blocking(i);
+        producer_done.store(true, std::memory_order_release);
+    });
+
+    std::thread consumer([&] {
+        int count = 0;
+        while (count < MSG_COUNT) {
+            int val;
+            if (q.pop(val)) {
+                received.push_back(val);
+                ++count;
+            } else {
+                std::this_thread::yield();
+            }
+        }
+    });
+
+    producer.join();
+    consumer.join();
+
+    ASSERT_EQ(static_cast<int>(received.size()), MSG_COUNT);
+    for (int i = 0; i < MSG_COUNT; ++i)
+        EXPECT_EQ(received[i], i) << "Ordering violation at index " << i;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. Throughput under maximum contention (tiny queue, many messages)
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, ThroughputTinyQueue) {
+    constexpr size_t  Q_SIZE    = 2;   // minimum allowed; maximises contention
+    constexpr int     MSG_COUNT = 500'000;
+    SPSCQueue<int, Q_SIZE> q;
+
+    std::atomic<long long> sum_produced{0};
+    std::atomic<long long> sum_consumed{0};
+
+    std::thread producer([&] {
+        long long s = 0;
+        for (int i = 1; i <= MSG_COUNT; ++i) {
+            q.push_blocking(i);
+            s += i;
+        }
+        sum_produced.store(s, std::memory_order_release);
+    });
+
+    std::thread consumer([&] {
+        long long s     = 0;
+        int       count = 0;
+        while (count < MSG_COUNT) {
+            int val;
+            if (q.pop(val)) { s += val; ++count; }
+            else             std::this_thread::yield();
+        }
+        sum_consumed.store(s, std::memory_order_release);
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_EQ(sum_produced.load(), sum_consumed.load())
+        << "Checksum mismatch — data was corrupted or lost";
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. Non-blocking push/pop: verify return values are coherent under concurrency
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, NonBlockingPushPopCoherence) {
+    constexpr size_t Q_SIZE    = 8;
+    constexpr int    MSG_COUNT = 200'000;
+    SPSCQueue<int, Q_SIZE> q;
+
+    std::atomic<int>  pushed{0};
+    std::atomic<int>  popped{0};
+    std::atomic<bool> done{false};
+    Barrier           barrier{2};
+
+    std::thread producer([&] {
+        barrier.arrive_and_wait();
+        int sent = 0;
+        for (int i = 0; i < MSG_COUNT;) {
+            if (q.push(i)) { ++i; ++sent; }
+            else            std::this_thread::yield();
+        }
+        pushed.store(sent, std::memory_order_release);
+        done.store(true, std::memory_order_release);
+    });
+
+    std::thread consumer([&] {
+        barrier.arrive_and_wait();
+        int recv = 0;
+        while (!done.load(std::memory_order_acquire) || recv < MSG_COUNT) {
+            int val;
+            if (q.pop(val)) ++recv;
+            else             std::this_thread::yield();
+        }
+        // Drain any remainder
+        { int val; while (q.pop(val)) ++recv; }
+        popped.store(recv, std::memory_order_release);
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_EQ(pushed.load(), MSG_COUNT);
+    EXPECT_EQ(popped.load(), MSG_COUNT);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. Large payload: cache-line-sized struct to expose false-sharing bugs
+// ─────────────────────────────────────────────────────────────────────────────
+struct alignas(64) BigPayload {
+    uint64_t sequence;
+    uint8_t  padding[56];  // total = 64 bytes
+};
+
+TEST_F(SPSCQueueStressTest, LargePayloadIntegrity) {
+    constexpr size_t  Q_SIZE    = 32;
+    constexpr int     MSG_COUNT = 100'000;
+    SPSCQueue<BigPayload, Q_SIZE> q;
+
+    std::atomic<bool> ok{true};
+
+    std::thread producer([&] {
+        for (int i = 0; i < MSG_COUNT; ++i) {
+            BigPayload p{};
+            p.sequence = static_cast<uint64_t>(i);
+            q.push_blocking(p);
+        }
+    });
+
+    std::thread consumer([&] {
+        for (int i = 0; i < MSG_COUNT; ++i) {
+            BigPayload p = q.pop_blocking();
+            if (p.sequence != static_cast<uint64_t>(i)) {
+                ok.store(false, std::memory_order_relaxed);
+            }
+        }
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_TRUE(ok.load()) << "BigPayload sequence numbers were corrupted";
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. Time-bounded stress: run flat-out for N ms, check queue is empty at end
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, TimeBoundedStress) {
+    constexpr size_t Q_SIZE = 16;
+    constexpr auto   DURATION = std::chrono::milliseconds{500};
+    SPSCQueue<uint64_t, Q_SIZE> q;
+
+    std::atomic<uint64_t> produced{0};
+    std::atomic<uint64_t> consumed{0};
+    std::atomic<bool>     stop{false};
+
+    std::thread producer([&] {
+        uint64_t seq = 0;
+        while (!stop.load(std::memory_order_relaxed)) {
+            if (q.push(seq)) { ++seq; produced.fetch_add(1, std::memory_order_relaxed); }
+            else              std::this_thread::yield();
+        }
+        // signal "no more items" via a sentinel we track with produced count
+    });
+
+    std::thread consumer([&] {
+        uint64_t expect = 0;
+        while (!stop.load(std::memory_order_relaxed) ||
+               consumed.load(std::memory_order_relaxed) <
+               produced.load(std::memory_order_acquire)) {
+            uint64_t val;
+            if (q.pop(val)) {
+                EXPECT_EQ(val, expect) << "Ordering broken at item " << expect;
+                ++expect;
+                consumed.fetch_add(1, std::memory_order_relaxed);
+            } else {
+                std::this_thread::yield();
+            }
+        }
+    });
+
+    std::this_thread::sleep_for(DURATION);
+    stop.store(true, std::memory_order_release);
+
+    producer.join();
+    consumer.join();
+
+    // Drain leftovers
+    uint64_t val;
+    while (q.pop(val)) consumed.fetch_add(1, std::memory_order_relaxed);
+
+    EXPECT_EQ(produced.load(), consumed.load())
+        << "Items in flight were lost after stop";
+    EXPECT_GT(produced.load(), 0u) << "No items were produced — likely a deadlock";
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. Queue-full / queue-empty edge cases under concurrency
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, FullAndEmptyBoundaryConditions) {
+    constexpr size_t Q_SIZE = 4;   // fills up quickly
+    constexpr int    ROUNDS = 50'000;
+    SPSCQueue<int, Q_SIZE> q;
+
+    std::atomic<int> full_hits{0};   // producer saw a full queue
+    std::atomic<int> empty_hits{0};  // consumer saw an empty queue
+    std::atomic<int> sent{0};
+    std::atomic<int> recv{0};
+
+    std::thread producer([&] {
+        for (int i = 0; i < ROUNDS; ++i) {
+            while (!q.push(i)) {
+                full_hits.fetch_add(1, std::memory_order_relaxed);
+                std::this_thread::yield();
+            }
+            sent.fetch_add(1, std::memory_order_relaxed);
+        }
+    });
+
+    std::thread consumer([&] {
+        int count = 0;
+        while (count < ROUNDS) {
+            int val;
+            if (!q.pop(val)) {
+                empty_hits.fetch_add(1, std::memory_order_relaxed);
+                std::this_thread::yield();
+            } else {
+                ++count;
+                recv.fetch_add(1, std::memory_order_relaxed);
+            }
+        }
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_EQ(sent.load(), ROUNDS);
+    EXPECT_EQ(recv.load(), ROUNDS);
+
+    // Sanity: with a tiny queue both full and empty conditions must have fired.
+    EXPECT_GT(full_hits.load(),  0) << "Queue was never full — test may be invalid";
+    EXPECT_GT(empty_hits.load(), 0) << "Queue was never empty — test may be invalid";
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. Power-of-two vs non-power-of-two capacities (modulo correctness)
+// ─────────────────────────────────────────────────────────────────────────────
+template <size_t N>
+static void run_modulo_stress(int msg_count) {
+    SPSCQueue<int, N> q;
+    long long         expect_sum = static_cast<long long>(msg_count - 1) * msg_count / 2;
+    std::atomic<long long> got_sum{0};
+
+    std::thread producer([&] {
+        for (int i = 0; i < msg_count; ++i) q.push_blocking(i);
+    });
+
+    std::thread consumer([&] {
+        long long s = 0;
+        for (int i = 0; i < msg_count; ++i) s += q.pop_blocking();
+        got_sum.store(s, std::memory_order_release);
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_EQ(got_sum.load(), expect_sum)
+        << "Checksum wrong for queue capacity " << N;
+}
+
+TEST_F(SPSCQueueStressTest, ModuloCorrectnessVariousCapacities) {
+    run_modulo_stress<2>(10'000);    // minimum capacity
+    run_modulo_stress<3>(10'000);    // non-power-of-two
+    run_modulo_stress<7>(10'000);    // non-power-of-two
+    run_modulo_stress<8>(10'000);    // power-of-two
+    run_modulo_stress<31>(10'000);   // non-power-of-two
+    run_modulo_stress<128>(10'000);  // power-of-two
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. pop_blocking / push_blocking symmetry: ensure no deadlock
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, BlockingAPINoDeadlock) {
+    constexpr size_t Q_SIZE    = 16;
+    constexpr int    MSG_COUNT = 300'000;
+    SPSCQueue<int, Q_SIZE> q;
+
+    // Set a hard timeout so CI doesn't hang if there is a deadlock.
+    const auto TIMEOUT = std::chrono::seconds{10};
+    std::atomic<bool> timed_out{false};
+    std::atomic<bool> finished{false};
+
+    std::thread watchdog([&] {
+        auto limit = deadline(
+            std::chrono::duration_cast<std::chrono::milliseconds>(TIMEOUT));
+        while (!finished.load(std::memory_order_acquire)) {
+            if (std::chrono::steady_clock::now() > limit) {
+                timed_out.store(true, std::memory_order_release);
+                // Cannot kill threads portably; the test will detect the flag.
+                return;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds{50});
+        }
+    });
+
+    std::thread producer([&] {
+        for (int i = 0; i < MSG_COUNT && !timed_out.load(std::memory_order_relaxed); ++i)
+            q.push_blocking(i);
+    });
+
+    std::thread consumer([&] {
+        for (int i = 0; i < MSG_COUNT && !timed_out.load(std::memory_order_relaxed); ++i)
+            q.pop_blocking();
+    });
+
+    producer.join();
+    consumer.join();
+    finished.store(true, std::memory_order_release);
+    watchdog.join();
+
+    EXPECT_FALSE(timed_out.load()) << "Deadlock detected: blocking API stalled";
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. Burst pattern: producer sends bursts, consumer drains between bursts
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, BurstPattern) {
+    constexpr size_t Q_SIZE      = 64;
+    constexpr int    BURST_SIZE  = 50;
+    constexpr int    NUM_BURSTS  = 2'000;
+    constexpr int    TOTAL       = BURST_SIZE * NUM_BURSTS;
+    SPSCQueue<int, Q_SIZE> q;
+
+    std::atomic<int> produced{0};
+    std::atomic<int> consumed{0};
+
+    std::thread producer([&] {
+        int val = 0;
+        for (int b = 0; b < NUM_BURSTS; ++b) {
+            // Send a full burst as fast as possible.
+            for (int i = 0; i < BURST_SIZE; ++i) {
+                q.push_blocking(val++);
+                produced.fetch_add(1, std::memory_order_relaxed);
+            }
+            // Brief pause between bursts to let the consumer catch up.
+            std::this_thread::sleep_for(std::chrono::microseconds{50});
+        }
+    });
+
+    std::thread consumer([&] {
+        int count = 0;
+        while (count < TOTAL) {
+            int val;
+            if (q.pop(val)) { ++count; consumed.fetch_add(1, std::memory_order_relaxed); }
+            else             std::this_thread::yield();
+        }
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_EQ(produced.load(), TOTAL);
+    EXPECT_EQ(consumed.load(), TOTAL);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. Memory-order stress: verify no torn reads on 64-bit values
+// ─────────────────────────────────────────────────────────────────────────────
+TEST_F(SPSCQueueStressTest, NoTornReadsOn64BitValues) {
+    // We use a magic pattern: upper 32 bits == lower 32 bits XOR 0xDEADBEEF.
+    // Any torn read will produce a value that violates this invariant.
+    constexpr size_t  Q_SIZE    = 32;
+    constexpr int     MSG_COUNT = 500'000;
+    constexpr uint64_t MAGIC    = 0xDEADBEEFULL;
+
+    SPSCQueue<uint64_t, Q_SIZE> q;
+    std::atomic<bool> corrupted{false};
+
+    std::thread producer([&] {
+        for (int i = 0; i < MSG_COUNT; ++i) {
+            uint64_t lo  = static_cast<uint64_t>(i) & 0xFFFF'FFFFU;
+            uint64_t hi  = (lo ^ MAGIC) << 32U;
+            q.push_blocking(hi | lo);
+        }
+    });
+
+    std::thread consumer([&] {
+        for (int i = 0; i < MSG_COUNT; ++i) {
+            uint64_t v = q.pop_blocking();
+            uint64_t lo = v & 0xFFFF'FFFFU;
+            uint64_t hi = (v >> 32U) & 0xFFFF'FFFFU;
+            if (hi != (lo ^ MAGIC))
+                corrupted.store(true, std::memory_order_relaxed);
+        }
+    });
+
+    producer.join();
+    consumer.join();
+
+    EXPECT_FALSE(corrupted.load()) << "Torn read detected on 64-bit payload";
+}
+
