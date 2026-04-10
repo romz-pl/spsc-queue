@@ -115,18 +115,26 @@ cd build && ctest --output-on-failure
 #include "spsc_queue.hpp"
 
 // Create a queue with a capacity of 1024 slots
-SPSCQueue<int, 1024> queue;
+SPSCQueue<int, QUEUE_CAP> q;
 
-// --- Producer thread ---
-if (queue.enqueue(42)) {
-    // item was successfully enqueued
-}
+// ---- Producer ----
+std::thread producer([&] {
+    for (int i = 0; i < ITEM_COUNT; ++i)
+        q.push_blocking(i);
 
-// --- Consumer thread ---
-int value{};
-if (queue.dequeue(value)) {
-    // value == 42
-}
+    q.push_blocking(SENTINEL);   // tell the consumer we're done
+});
+
+// ---- Consumer ----
+std::thread consumer([&] {
+    long long sum      = 0;
+    int       received = 0;
+
+    while (true) {
+        int val = q.pop_blocking();
+        if (val == SENTINEL) break;
+    }
+});
 ```
 
 ### API
