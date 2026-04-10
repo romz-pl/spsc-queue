@@ -1,4 +1,4 @@
-# SPSCQueue — Detailed Design Notes and Trade-Offs
+# Detailed Design Notes and Trade-Offs
 
 
 > [!NOTE]
