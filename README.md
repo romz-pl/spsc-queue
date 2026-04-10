@@ -98,7 +98,7 @@ cmake --build build
 ### Run the demo
 
 ```bash
-./build/spsc_demo
+./build/src/spsc-demo
 ```
 
 ### Run the tests
