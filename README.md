@@ -66,7 +66,9 @@ spsc-lock-free-queue/
 │
 ├── docs/
 │   ├── design.md               # Detailed design notes & trade-offs
-│   └── memory_model.md         # C++ memory model walk-through for this queue
+│   ├── memory-ordering.md      # C++ memory model walk-through for this queue
+|   ├── test_basic.md           # Description of basic tests
+|   └── test_concurrent.md      # Description of concurrent tests
 │
 ├── .github/
 │   └── workflows/
