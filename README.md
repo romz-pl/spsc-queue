@@ -200,7 +200,7 @@ cd build-tsan && ctest
 ## 📖 Further Reading
 
 - [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
-- Herb Sutter — *"Lock-Free Programming"* (CppCon 2014)
+- Herb Sutter — [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
 - Dmitry Vyukov — [*"Single-Producer Single-Consumer Queue"*](https://www.1024cores.net/home/lock-free-algorithms/queues/unbounded-spsc-queue)
 - Paul E. McKenney — *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*
 
