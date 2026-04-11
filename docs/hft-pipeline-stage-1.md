@@ -38,7 +38,7 @@ The solution is to eliminate the kernel entirely from the data path. Frameworks 
 
 Here's how Stage 1 is structured architecturally:
 
-![HFT pipeline stage 1 architecture](./hft_stage1_architecture.svg)
+![HFT pipeline stage 1 architecture](./hft-pipeline-stage-1-architecture.svg)
 
 ---
 
