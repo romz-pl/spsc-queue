@@ -40,6 +40,7 @@ Here's how Stage 1 is structured architecturally:
 
 ![HFT pipeline stage 1 architecture](./hft_stage1_architecture.svg)
 
+---
 
 ## The PMD thread: a dedicated CPU core as a wire-tap
 
