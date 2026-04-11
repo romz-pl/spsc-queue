@@ -36,7 +36,10 @@ In a standard Linux environment, an incoming network packet follows a long burea
 
 The solution is to eliminate the kernel entirely from the data path. Frameworks like **DPDK** (Data Plane Development Kit) and **RoCE** (RDMA over Converged Ethernet) achieve this by mapping the NIC's packet buffers directly into user-space memory via DMA. The application holds a pointer directly into the hardware's receive descriptor ring — no copies, no interrupts, no system calls.
 
-Here's how Stage 1 is structured architecturally:---
+Here's how Stage 1 is structured architecturally:
+
+![HFT pipeline stage 1 architecture](./hft_stage1_architecture.svg)
+
 
 ## The PMD thread: a dedicated CPU core as a wire-tap
 
