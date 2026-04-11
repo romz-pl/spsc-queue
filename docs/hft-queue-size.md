@@ -1,4 +1,4 @@
-# Importance of queu size in High Frequency Trading (HFT)
+# Importance of queue size in High Frequency Trading (HFT)
 
 
 > [!NOTE]

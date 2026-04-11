@@ -57,18 +57,21 @@ spsc-lock-free-queue/
 │
 ├── tests/
 │   ├── test_basic.cpp          # Correctness tests (single-threaded)
-│   ├── test_concurrent.cpp     # Stress tests (two threads)
-│   └── test_edge_cases.cpp     # Full / empty / wrap-around edge cases
+│   └── test_concurrent.cpp     # Stress tests (two threads)
 │
 ├── benchmarks/
 │   ├── bench_spsc.cpp          # Throughput & latency benchmarks
 │   └── results/                # Pre-recorded benchmark results (Markdown + CSV)
 │
 ├── docs/
-│   ├── design.md               # Detailed design notes & trade-offs
-│   ├── memory-ordering.md      # C++ memory model walk-through for this queue
-|   ├── test_basic.md           # Description of basic tests
-|   └── test_concurrent.md      # Description of concurrent tests
+|   ├── hft-pipeline-stage-[1-8].md
+|   ├── hft-queues-app-extended.md
+|   ├── hft-queues-app-short.md
+|   ├── hft-queue-size.md
+│   ├── spsc-design.md           # Detailed design notes & trade-offs
+│   ├── spsc-memory-ordering.md  # C++ memory model walk-through for this queue
+|   ├── test_basic.md            # Description of basic tests
+|   └── test_concurrent.md       # Description of concurrent tests
 │
 ├── .github/
 │   └── workflows/
