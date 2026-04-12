@@ -17,6 +17,7 @@
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
 + [Cache Pathologies in HFT Systems](./hft-cache-pathologies.md)
 + [Performance Analysis Tools for C++ HFT Systems](./hft-performace-tools.md)
++ [Compiler Optimization Techniques for C++ in HFT Systems](./hft-compiler-optimization.md)
 
 
 
