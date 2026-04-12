@@ -292,12 +292,12 @@ public:
 ┌───────────────────────────────────────────────────────────────────────────┐
 │  SPSCRingBuffer<MsgT, 65536>  →  buf_: 4 MB contiguous virtual region     │
 │                                                                           │
-│  With 4 KB pages:   4MB / 4KB  = 1,024 page table entries needed         │
-│                     L1 DTLB (64 entries for 4KB) → THRASHING             │
+│  With 4 KB pages:   4MB / 4KB  = 1,024 page table entries needed          │
+│                     L1 DTLB (64 entries for 4KB) → THRASHING              │
 │                     L2 STLB (2048 entries)       → marginal relief        │
 │                                                                           │
-│  With 2 MB pages:   4MB / 2MB  =     2 page table entries needed         │
-│                     L1 DTLB (32 entries for 2MB) → ALWAYS HIT            │
+│  With 2 MB pages:   4MB / 2MB  =     2 page table entries needed          │
+│                     L1 DTLB (32 entries for 2MB) → ALWAYS HIT             │
 │                     TLB miss probability ≈ 0 on steady-state hot path     │
 └───────────────────────────────────────────────────────────────────────────┘
 ```
