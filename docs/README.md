@@ -15,6 +15,7 @@
 + [Order book architecture in HFT systems](./hft-order-book.md)
 + [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./hft-kernale-bypass.md)
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
++ [Cache Pathologies in HFT Systems](./hft-cache-pathologies.md)
 
 
 
