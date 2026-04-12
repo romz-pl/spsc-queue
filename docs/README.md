@@ -2,7 +2,7 @@
 
 
 ## Single-Producer Single-Consumer (SPSC)
-+ [SPSC Lock-Free Ring Buffer for High-Frequency Trading](./spcs-thorough-description.md)
++ [SPSC Lock-Free Ring Buffer for High-Frequency Trading](./spsc-thorough-description.md)
 + [Detailed Design Notes and Trade-Offs](./spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./spsc-memory-ordering.md)
 
