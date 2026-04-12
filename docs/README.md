@@ -6,7 +6,7 @@
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./spsc-memory-ordering.md)
 
 
-## SPSC and High Frequency Trading (HFT)
+## High Frequency Trading (HFT) and SPSC
 + [Application in HFT](hft-queues-app-short.md)
 + [Application in HFT: In-Depth Analysis](hft-queues-app-extended.md)
 + [Importance of queue size in HFT](./hft-queue-size.md)
@@ -16,6 +16,7 @@
 + [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./hft-kernale-bypass.md)
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
 + [Cache Pathologies in HFT Systems](./hft-cache-pathologies.md)
++ [Performance Analysis Tools for C++ HFT Systems](./htf-perfomrance-tools.md)
 
 
 
