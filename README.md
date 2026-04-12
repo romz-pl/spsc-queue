@@ -174,6 +174,7 @@ cd build-tsan && ctest
 - Peter Mbanugo, [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
 - Paul E. McKenney, *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, [Release v2023.06.11a](https://arxiv.org/abs/1701.00854)
 - Charles Frasch, *Single Producer Single Consumer Lock-free FIFO From the Ground Up, CppCon 2023*, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
+- Boost C++ Libraries, [SPSC Lock Free Queue](https://www.boost.org/doc/libs/latest/doc/html/lockfree/reference.html)
 
 ---
 
