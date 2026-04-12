@@ -1,4 +1,4 @@
-# Huge Pages & TLB in SPSC Lock-Free Ring Buffers for HFT
+# Huge Pages & TLB in SPSC
 
 ---
 
