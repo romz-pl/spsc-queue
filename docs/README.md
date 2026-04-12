@@ -4,6 +4,7 @@
 ## Single-Producer Single-Consumer (SPSC)
 + [SPSC Lock-Free Ring Buffer for High-Frequency Trading](./spsc-thorough-description.md)
 + [Huge Pages & TLB in SPSC](./spsc-tlb-and-huge-pages.md)
++ [Setup of x86-64 Linux HFT System](./spsc-x86-84-setup.md)
 + [Detailed Design Notes and Trade-Offs](./spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./spsc-memory-ordering.md)
 
