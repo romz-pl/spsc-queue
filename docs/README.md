@@ -1,4 +1,4 @@
-# Documentation for Single-Producer Single-Consumer (SPSC) lock-free ring buffer
+# Single-Producer Single-Consumer (SPSC) lock-free ring buffer
 
 
 ## Single-Producer Single-Consumer (SPSC)
@@ -12,6 +12,7 @@
 + [Importance of queue size in HFT](./hft-queue-size.md)
 + [Vertical scaling in HFT](./hft-scaling-vertical.md)
 + [Horizontal scaling in HFT](./hft-scaling-horizontal.md)
++ [Order book architecture in HFT systems](./hft-order-book.md)
 
 
 
