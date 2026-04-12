@@ -170,6 +170,7 @@ cd build-tsan && ctest
 ## 📖 Further Reading
 
 - Erik Rigtorp, *A single producer single consumer wait-free and lock-free fixed size queue written in C++11*, [rigtorp GitHub repo](https://github.com/rigtorp/SPSCQueue)
+- Erik Rigtorp, *Optimizing a ring buffer for throughput*, [13 Dec 2021](https://rigtorp.se/ringbuffer/)
 - [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
 - Herb Sutter, [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
 - Peter Mbanugo, [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
