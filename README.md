@@ -59,10 +59,6 @@ spsc-lock-free-queue/
 │   ├── test_basic.cpp          # Correctness tests (single-threaded)
 │   └── test_concurrent.cpp     # Stress tests (two threads)
 │
-├── benchmarks/
-│   ├── bench_spsc.cpp          # Throughput & latency benchmarks
-│   └── results/                # Pre-recorded benchmark results (Markdown + CSV)
-│
 ├── docs/
 |   ├── hft-pipeline-stage-[1-8].md
 |   ├── hft-queues-app-extended.md
@@ -142,35 +138,6 @@ std::thread consumer([&] {
 });
 ```
 
-### API
-
-| Method | Description |
-|--------|-------------|
-| `SPSCQueue(size_t capacity)` | Constructs a queue with the given fixed capacity |
-| `bool enqueue(const T& item)` | Tries to enqueue an item; returns `false` if the queue is full |
-| `bool enqueue(T&& item)` | Move-enqueue overload |
-| `bool dequeue(T& item)` | Tries to dequeue into `item`; returns `false` if the queue is empty |
-| `bool empty() const` | Returns `true` if the queue contains no items (approximate) |
-| `bool full() const` | Returns `true` if no more items can be enqueued (approximate) |
-| `size_t size() const` | Returns the approximate number of items currently in the queue |
-| `size_t capacity() const` | Returns the maximum number of items the queue can hold |
-
-> **Note:** `empty()`, `full()`, and `size()` are inherently approximate in a concurrent setting and should be used for diagnostics only, not for synchronization decisions.
-
----
-
-## 📊 Performance
-
-Benchmarks were run on an Intel Core i7-12700K, Ubuntu 22.04, GCC 12 (`-O2`), with the producer and consumer pinned to separate physical cores.
-
-| Metric | Value |
-|--------|-------|
-| Throughput | ~450 million ops/sec |
-| Average round-trip latency | ~12 ns |
-| Cache line size assumed | 64 bytes |
-
-> Results will vary depending on hardware, compiler flags, and workload. Run `bench_spsc` on your own machine for representative numbers.
-
 ---
 
 ## ⚠️ Constraints & Limitations
@@ -203,9 +170,10 @@ cd build-tsan && ctest
 ## 📖 Further Reading
 
 - [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
-- Herb Sutter — [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
-- Peter Mbanugo — [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
-- Paul E. McKenney — *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, [Release v2023.06.11a](https://arxiv.org/abs/1701.00854)
+- Herb Sutter, [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
+- Peter Mbanugo, [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
+- Paul E. McKenney, *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, [Release v2023.06.11a](https://arxiv.org/abs/1701.00854)
+- Charles Frasch, *Single Producer Single Consumer Lock-free FIFO From the Ground Up, CppCon 2023*, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
 
 ---
 
