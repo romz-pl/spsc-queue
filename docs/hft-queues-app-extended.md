@@ -1,4 +1,4 @@
-# Single Producer, Single Consumer (SPSC) Queues in High-Frequency Trading
+# SPSC Queues in HFT: In-depth Analysis
 
 ## Foundational Concept and Motivation
 
