@@ -188,7 +188,7 @@ while (resting != queue.end() && aggressive_qty > 0) {
 
 This architecture — pre-allocated pool, intrusive queues, flat hash index, cached iterators, seqlocked BBO, kernel-bypass feed — is what allows a modern HFT order book to process an L3 update in under 200 ns end-to-end on commodity x86 hardware.
 
-
+---
 
 
 > [!NOTE]
