@@ -7,6 +7,7 @@
 + [Setup of x86-64 Linux HFT System](./spsc-x86-64-setup.md)
 + [Detailed Design Notes and Trade-Offs](./spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./spsc-memory-ordering.md)
++ [x86-64 vs. IBM POWER on Linux](./spsc-x86-64-vs-ibm-power.md)
 
 
 ## High Frequency Trading (HFT) and SPSC
