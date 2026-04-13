@@ -40,6 +40,7 @@
 + [Apache Kafka in HFT Environments](./hft-kafka-message.md)
 + [Kafka's Role in HFT Environments](./hft-kafka-role.md)
 + [Solace PubSub+ in HFT Environments](./hft-solace-message.md)
++ [IBM MQ in HFT Environments](./hft-ibm-mq-message.md)
 + [Kafka vs. Solace](./hft-kafka-vs-solace.md)
 
 
