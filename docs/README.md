@@ -39,6 +39,7 @@
 ## Message Queue Systems in HFT
 + [Apache Kafka in High-Frequency Trading](./hft-kafka-message.md)
 + [Kafka's Role in the HFT Ecosystem](./hft-kafka-role.md)
++ [Kafka vs. Solace](./hft-kafka-vs-solace.md)
 
 
 ## Tests for SPSC implemenation
