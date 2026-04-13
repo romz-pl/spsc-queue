@@ -36,7 +36,8 @@
 + [Stage 8: Any Thread → Logger](./hft-pipeline-stage-8.md)
 
 
-
+## Message Queue Systems in HFT
++ [Apache Kafka in High-Frequency Trading](./hft-kafka-message.md)
 
 
 ## Tests for SPSC implemenation
