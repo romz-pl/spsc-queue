@@ -12,12 +12,12 @@
 // ── Ring buffer ────────────────────────────────────────────────────────────────
 
 template<typename T, size_t N>
-struct SPSCQueue {
+struct alignas(64) SPSCQueue {
     static_assert(N >= 2, "capacity must be at least 2");
 
     T      buffer[N];
-    std::atomic<size_t> head{0};   // producer writes, consumer reads
-    std::atomic<size_t> tail{0};   // consumer writes, producer reads
+    alignas(64) std::atomic<size_t> head{0};   // producer writes, consumer reads
+    alignas(64) std::atomic<size_t> tail{0};   // consumer writes, producer reads
 
     // Called only by the producer thread.
     bool push(const T& val) {
