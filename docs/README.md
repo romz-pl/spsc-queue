@@ -36,6 +36,10 @@
 + [Stage 8: Any Thread → Logger](./hft-pipeline-stage-8.md)
 
 
+## Market Data
++ [High-Frequency Trading Protocols](./hft-protocols.md)
+
+
 ## Message Queue Systems in HFT
 + [Apache Kafka in HFT Environments](./hft-kafka-message.md)
 + [Kafka's Role in HFT Environments](./hft-kafka-role.md)
