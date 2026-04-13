@@ -37,8 +37,9 @@
 
 
 ## Message Queue Systems in HFT
-+ [Apache Kafka in High-Frequency Trading](./hft-kafka-message.md)
-+ [Kafka's Role in the HFT Ecosystem](./hft-kafka-role.md)
++ [Apache Kafka in HFT Environments](./hft-kafka-message.md)
++ [Kafka's Role in HFT Environments](./hft-kafka-role.md)
++ [Solace PubSub+ in HFT Environments](./hft-solace-message.md)
 + [Kafka vs. Solace](./hft-kafka-vs-solace.md)
 
 
