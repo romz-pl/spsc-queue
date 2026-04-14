@@ -43,9 +43,9 @@
 
 
 ## High Frequency Trading and Hardware
-+ [x86-64 vs. IBM POWER on Linux](./spsc-x86-64-vs-ibm-power.md)
 + [x86-64 CPUs for High-Frequency Trading](./hft-cpu-and-cache.md)
 + [Setup of x86-64 Linux HFT System](./spsc-x86-64-setup.md)
++ [x86-64 vs. IBM POWER on Linux](./spsc-x86-64-vs-ibm-power.md)
 
 ## High Frequency Trading and Compiler Optimization
 + [Performance Analysis Tools for C++ HFT Systems](./hft-performace-tools.md)
