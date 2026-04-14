@@ -48,7 +48,7 @@
 + [Compiler Optimization Techniques for C++ in HFT Systems](./hft-compiler-optimization.md)
 
 
-## Market Data
+## Market Data Protocols
 + [High-Frequency Trading Protocols](./hft-protocols.md)
 
 
