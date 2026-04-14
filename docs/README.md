@@ -32,6 +32,7 @@
 ## High Frequency Trading: Specific Data Structures and Activities
 + [Order book architecture in HFT systems](./hft-order-book.md)
 + [Matching Engine Architecture for HFT](./hft-matching-engine.md)
++ [Intrusive Linked List for an HFT Order Queue](./hft-intrusive-linked-list.md)
 + [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./hft-kernale-bypass.md)
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
 + [Cache Pathologies in HFT Systems](./hft-cache-pathologies.md)
