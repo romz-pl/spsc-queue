@@ -70,6 +70,7 @@
 ## References
 + 🎥 "Low-Latency Lock-Free Ring-Buffer in C - Lock Free Programming (Part #2)", [13 Mar 2024](https://www.youtube.com/watch?v=aYwmopy6cdY)
 + 🎥 "Single Producer Single Consumer Lock-free FIFO From the Ground Up", CppCon 2023, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
++ 🎥 "SPSC Queues: From Naive to Lock-Free", [24 Jan 2026](https://www.youtube.com/watch?v=PFxzyWMoG_A)
 + 🎥 "Trading at light speed: designing low latency systems in C++", Meeting C++ 2022, [2 Jan 2023](https://www.youtube.com/watch?v=8uAW5FQtcvE)
 + 🎥 "What is Low Latency C++? (Part 1)", CppNow 2023, [18 Aug 2023](https://www.youtube.com/watch?v=EzmNeAhWqVs)
 + 🎥 "What is Low Latency C++? (Part 2)", CppNow 2023, [18 Aug 2023](https://www.youtube.com/watch?v=5uIsadq-nyk)
