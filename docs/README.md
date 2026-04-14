@@ -5,6 +5,7 @@
 + [SPSC Lock-Free Ring Buffer for High-Frequency Trading](./spsc-thorough-description.md)
 + [Huge Pages & TLB in SPSC](./spsc-tlb-and-huge-pages.md)
 + [Detailed Design Notes and Trade-Offs](./spsc-design.md)
++ [Memory Ordering in SPSC Lock-Free Ring Buffers](./spsc-memory-ordering.md)
 
 
 ## High Frequency Trading and SPSC
@@ -42,7 +43,6 @@
 
 
 ## High Frequency Trading and Hardware
-+ [Memory Ordering in SPSC Lock-Free Ring Buffers](./spsc-memory-ordering.md)
 + [x86-64 vs. IBM POWER on Linux](./spsc-x86-64-vs-ibm-power.md)
 + [x86-64 CPUs for High-Frequency Trading](./hft-cpu-and-cache.md)
 + [Setup of x86-64 Linux HFT System](./spsc-x86-64-setup.md)
