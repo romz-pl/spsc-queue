@@ -35,6 +35,7 @@
 + [Intrusive Linked List for an HFT Order Queue](./hft-intrusive-linked-list.md)
 + [Flat Circular Array Order Queue for HFT](./hft-flat-circular-array.md)
 + [Flat Hash Map + Sorted Intrusive Tree for an HFT Order Queue](./hft-flat-hash-map.md)
++ [An Extensive Benchmark of C and C++ Hash Tables by Jackson Allan](https://jacksonallan.github.io/c_cpp_hash_tables_benchmark/)
 
 
 ## High Frequency Trading and Operating System
