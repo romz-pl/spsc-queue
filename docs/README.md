@@ -29,14 +29,21 @@
 + [Stage 8: Any Thread → Logger](./hft-pipeline-stage-8.md)
 
 
-## High Frequency Trading: Specific Data Structures and Activities
+## High Frequency Trading and Specific Data Structures
 + [Order book architecture in HFT systems](./hft-order-book.md)
 + [Matching Engine Architecture for HFT](./hft-matching-engine.md)
 + [Intrusive Linked List for an HFT Order Queue](./hft-intrusive-linked-list.md)
 + [Flat Circular Array Order Queue for HFT](./hft-flat-circular-array.md)
++ [Flat Hash Map + Sorted Intrusive Tree for an HFT Order Queue](./hft-flat-hash-map.md)
+
+
+## High Frequency Trading and Operating System
 + [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./hft-kernale-bypass.md)
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
 + [Cache Pathologies in HFT Systems](./hft-cache-pathologies.md)
+
+
+## High Frequency Trading and Compiler Optimization
 + [Performance Analysis Tools for C++ HFT Systems](./hft-performace-tools.md)
 + [Compiler Optimization Techniques for C++ in HFT Systems](./hft-compiler-optimization.md)
 
