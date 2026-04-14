@@ -76,4 +76,5 @@
 + 🎥 "When Nanoseconds Matter: Ultrafast Trading Systems in C++", CppCon 2024, [28 Feb 2025](https://www.youtube.com/watch?v=sX2nF1fW7kI)
 + Erik Rigtorp, "Optimizing a Ring Buffer for Throughput", [14 April 2026](https://rigtorp.se/ringbuffer/)
 + Erik Rigtorp, [SPSCQueue GitHub repo](https://github.com/rigtorp/SPSCQueue)
++ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", June 11, 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
 
