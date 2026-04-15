@@ -71,6 +71,8 @@
 
 
 ## References
++ 🎥 "Lock-Free Programming (or, Juggling Razor Blades), Part I", [16 Oct 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
++ 🎥 "Lock-Free Programming (or, Juggling Razor Blades), Part II", [16 Oct 2014](https://www.youtube.com/watch?v=CmxkPChOcvw)
 + 🎥 "Low-Latency Lock-Free Ring-Buffer in C - Lock Free Programming (Part #2)", [13 Mar 2024](https://www.youtube.com/watch?v=aYwmopy6cdY)
 + 🎥 "Single Producer Single Consumer Lock-free FIFO From the Ground Up", CppCon 2023, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
 + 🎥 "SPSC Queues: From Naive to Lock-Free", [24 Jan 2026](https://www.youtube.com/watch?v=PFxzyWMoG_A)
@@ -80,5 +82,9 @@
 + 🎥 "When Nanoseconds Matter: Ultrafast Trading Systems in C++", CppCon 2024, [28 Feb 2025](https://www.youtube.com/watch?v=sX2nF1fW7kI)
 + Erik Rigtorp, "Optimizing a Ring Buffer for Throughput", [14 April 2026](https://rigtorp.se/ringbuffer/)
 + Erik Rigtorp, [SPSCQueue GitHub repo](https://github.com/rigtorp/SPSCQueue)
++ Jackson Allan, "An Extensive Benchmark of C and C++ Hash Tables", [14 Apr 2026](https://jacksonallan.github.io/c_cpp_hash_tables_benchmark/)
 + Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", June 11, 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
-+ "An Extensive Benchmark of C and C++ Hash Tables by Jackson Allan", [14 Apr 2026](https://jacksonallan.github.io/c_cpp_hash_tables_benchmark/)
++ Peter Mbanugo, "Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)", [15 Apr 2026](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
++ [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
++ Boost C++ Libraries, [SPSC Lock Free Queue](https://www.boost.org/doc/libs/latest/doc/html/lockfree/reference.html)
+
