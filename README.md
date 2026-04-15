@@ -20,6 +20,7 @@
 + [Measuring Execution Time in HFT](./doc/hft-execution-time.md)
 + [SPDLog Logger in HFT](./doc/hft-spdlog.md)
 + [NanoLog Logger in HFT](./doc/hft-nanolog.md)
++ [Quill Logger in HFT](./doc/hft-quill.md)
 
 
 ## High Frequency Trading Pipeline and SPSC
