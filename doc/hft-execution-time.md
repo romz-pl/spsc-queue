@@ -1,4 +1,4 @@
-# Measuring Execution Time in High-Frequency Trading Systems (C++)
+# Measuring Execution Time in HFT
 
 ## 1. The Core Challenge
 
