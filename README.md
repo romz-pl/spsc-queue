@@ -68,9 +68,9 @@
 + [Description of Basic Tests](./doc/test_basic.md)
 + [Description of Concurrent Tests](./doc/test_concurrent.md)
 
+---
 
-
-## References
+## 📖 References
 + 🎥 "Lock-Free Programming (or, Juggling Razor Blades), Part I", [16 Oct 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
 + 🎥 "Lock-Free Programming (or, Juggling Razor Blades), Part II", [16 Oct 2014](https://www.youtube.com/watch?v=CmxkPChOcvw)
 + 🎥 "Low-Latency Lock-Free Ring-Buffer in C - Lock Free Programming (Part #2)", [13 Mar 2024](https://www.youtube.com/watch?v=aYwmopy6cdY)
