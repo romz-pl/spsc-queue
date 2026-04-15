@@ -7,6 +7,7 @@
 + [Huge Pages & TLB in SPSC](./doc/spsc-tlb-and-huge-pages.md)
 + [Detailed Design Notes and Trade-Offs](./doc/spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./doc/spsc-memory-ordering.md)
++ [Atomics vs. Mutexes in SPSC - Claude](./doc/spsc-atomics-mutexes-claude.md)
 + [Atomics vs. Mutexes in SPSC - ChatGPT](./doc/spsc-atomics-mutexes-chatgpt.md)
 
 
