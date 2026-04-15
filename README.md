@@ -1,191 +1,84 @@
-# SPSC Lock-Free Queue
+# Single-Producer Single-Consumer (SPSC) lock-free ring buffer
 
-A **Single Producer – Single Consumer (SPSC) lock-free queue** implemented in C++17. Designed for high-performance, low-latency inter-thread communication without the overhead of mutexes or condition variables.
 
----
+## Single-Producer Single-Consumer (SPSC)
++ [SPSC Introduction](./doc/doc/spsc-introduction.md)
++ [SPSC Lock-Free Ring Buffer for High-Frequency Trading](./doc/doc/spsc-thorough-description.md)
++ [Huge Pages & TLB in SPSC](./doc/spsc-tlb-and-huge-pages.md)
++ [Detailed Design Notes and Trade-Offs](./doc/spsc-design.md)
++ [Memory Ordering in SPSC Lock-Free Ring Buffers](./doc/spsc-memory-ordering.md)
 
-## ✨ Features
 
-- **Lock-free** — no mutexes, no blocking, no priority inversion
-- **Wait-free** for both producer and consumer under typical conditions
-- **Cache-friendly** — head and tail indices are placed on separate cache lines to eliminate false sharing
-- **Zero dynamic allocation** after construction — fixed-capacity ring buffer
-- **Linearizable** — operations appear to take effect atomically at a single point in time
-- **Header-only** — drop a single file into your project and go
+## High Frequency Trading and SPSC
++ [Application in HFT](hft-queues-app-short.md)
++ [Application in HFT: In-Depth Analysis](hft-queues-app-extended.md)
++ [Importance of queue size in HFT](./doc/hft-queue-size.md)
++ [Vertical scaling in HFT](./doc/hft-scaling-vertical.md)
++ [Horizontal scaling in HFT](./doc/hft-scaling-horizontal.md)
 
----
 
-## 📐 How It Works
+## High Frequency Trading Pipeline and SPSC
++ [Stage 1: NIC → Market Data Handler (Kernel Bypass)](./doc/hft-pipeline-stage-1.md)
++ [Stage 2: Market Data Parser → Order Book Engine](./doc/hft-pipeline-stage-2.md)
++ [Stage 3: Order Book Engine → Alpha / Signal Engine](./doc/hft-pipeline-stage-3.md)
++ [Stage 4: Signal Engine → Order Management System (OMS)](./doc/hft-pipeline-stage-4.md)
++ [Stage 5: OMS → Exchange Gateway (Outbound)](./doc/hft-pipeline-stage-5.md)
++ [Stage 6: Exchange Gateway → OMS (Inbound Execution Reports)](./doc/hft-pipeline-stage-6.md)
++ [Stage 7: OMS → Risk Manager](./doc/hft-pipeline-stage-7.md)
++ [Stage 8: Any Thread → Logger](./doc/hft-pipeline-stage-8.md)
 
-The queue is built on a **circular ring buffer** of a fixed capacity. Two atomic indices — `head_` (read by the consumer) and `tail_` (written by the producer) — track the state of the buffer.
 
-```
-  tail_ ──► [  ] [  ] [ X ] [ X ] [ X ] [  ] [  ]
-                        ▲                 ▲
-                     consumer           producer
-                      reads             writes
-                     (head_)            (tail_)
-```
+## High Frequency Trading and Specific Data Structures
++ [Order book architecture in HFT systems](./doc/hft-order-book.md)
++ [Matching Engine Architecture for HFT](./doc/hft-matching-engine.md)
++ [Intrusive Linked List for an HFT Order Queue](./doc/hft-intrusive-linked-list.md)
++ [Flat Circular Array Order Queue for HFT](./doc/hft-flat-circular-array.md)
++ [Flat Hash Map + Sorted Intrusive Tree for an HFT Order Queue](./doc/hft-flat-hash-map.md)
 
-- The **producer** loads `tail_`, checks that the next slot is not `head_`, writes the item, then stores the new `tail_` with `release` ordering.
-- The **consumer** loads `head_`, checks that it is not `tail_`, reads the item, then stores the new `head_` with `release` ordering.
-- Because only one thread ever writes `tail_` and only one thread ever writes `head_`, no compare-and-swap (CAS) loop is needed — a plain atomic store is sufficient.
 
-### Memory ordering
+## High Frequency Trading and Operating System
++ [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./doc/hft-kernale-bypass.md)
++ [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
++ [Cache Pathologies in HFT Systems](./doc/hft-cache-pathologies.md)
 
-| Operation | Ordering |
-|-----------|----------|
-| `enqueue` — check `head_` | `acquire` |
-| `enqueue` — publish new `tail_` | `release` |
-| `dequeue` — check `tail_` | `acquire` |
-| `dequeue` — publish new `head_` | `release` |
 
-This acquire/release pairing ensures that all writes performed by the producer before storing `tail_` are visible to the consumer after it loads `tail_`.
+## High Frequency Trading and Hardware
++ [x86-64 CPUs for High-Frequency Trading](./doc/hft-cpu-and-cache.md)
++ [Setup of x86-64 Linux HFT System](./doc/spsc-x86-64-setup.md)
++ [x86-64 vs. IBM POWER on Linux](./doc/spsc-x86-64-vs-ibm-power.md)
 
----
+## High Frequency Trading and Compiler Optimization
++ [Performance Analysis Tools for C++ HFT Systems](./doc/hft-performace-tools.md)
++ [Compiler Optimization Techniques for C++ in HFT Systems](./doc/hft-compiler-optimization.md)
 
-## 📁 Repository Structure
 
-```
-spsc-lock-free-queue/
-│
-├── include/
-│   └── spsc_queue.hpp          # Header-only queue implementation
-│
-├── src/
-│   └── main.cpp                # Usage example / demo
-│
-├── tests/
-│   ├── test_basic.cpp          # Correctness tests (single-threaded)
-│   └── test_concurrent.cpp     # Stress tests (two threads)
-│
-├── docs/
-|   ├── hft-pipeline-stage-[1-8].md
-|   ├── hft-queues-app-extended.md
-|   ├── hft-queues-app-short.md
-|   ├── hft-queue-size.md
-│   ├── spsc-design.md           # Detailed design notes & trade-offs
-│   ├── spsc-memory-ordering.md  # C++ memory model walk-through for this queue
-|   ├── test_basic.md            # Description of basic tests
-|   └── test_concurrent.md       # Description of concurrent tests
-│
-├── .github/
-│   └── workflows/
-│       └── ci.yml              # GitHub Actions: build, test, sanitizers
-│
-├── CMakeLists.txt              # CMake build configuration
-├── LICENSE                     # MIT License
-└── README.md                   # This file
-```
+## Market Data Protocols
++ [High-Frequency Trading Protocols](./doc/hft-protocols.md)
 
----
 
-## 🚀 Quick Start
+## Message Queue Systems in HFT
++ [Apache Kafka in HFT Environments](./doc/hft-kafka-message.md)
++ [Kafka's Role in HFT Environments](./doc/hft-kafka-role.md)
++ [Solace PubSub+ in HFT Environments](./doc/hft-solace-message.md)
++ [IBM MQ in HFT Environments](./doc/hft-ibm-mq-message.md)
++ [Kafka vs. Solace](./doc/hft-kafka-vs-solace.md)
 
-### Prerequisites
 
-- C++17-capable compiler (GCC ≥ 7, Clang ≥ 5, MSVC ≥ 19.14)
-- CMake ≥ 3.15
+## Tests for SPSC implemenation
++ [Description of Basic Tests](./doc/test_basic.md)
++ [Description of Concurrent Tests](./doc/test_concurrent.md)
 
-### Build
 
-```bash
-git clone https://github.com/romz-pl/spsc-queue.git
-cd spsc-queue
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-```
 
-### Run the demo
-
-```bash
-./build/src/spsc-demo
-```
-
-### Run the tests
-
-```bash
-cd build/tests && ctest --output-on-failure
-```
-
----
-
-## 🔧 Usage
-
-```cpp
-#include "spsc_queue.hpp"
-
-// Create a queue with a capacity of 1024 slots
-SPSCQueue<int, QUEUE_CAP> q;
-
-// ---- Producer ----
-std::thread producer([&] {
-    for (int i = 0; i < ITEM_COUNT; ++i)
-        q.push_blocking(i);
-
-    q.push_blocking(SENTINEL);   // tell the consumer we're done
-});
-
-// ---- Consumer ----
-std::thread consumer([&] {
-    long long sum      = 0;
-    int       received = 0;
-
-    while (true) {
-        int val = q.pop_blocking();
-        if (val == SENTINEL) break;
-    }
-});
-```
-
----
-
-## ⚠️ Constraints & Limitations
-
-- **Exactly one producer thread** and **exactly one consumer thread** — using this queue with multiple producers or consumers results in undefined behaviour.
-- **Fixed capacity** — the ring buffer does not grow dynamically. Size your queue according to your worst-case burst.
-- **Non-copyable, non-movable** — the queue object itself cannot be copied or moved after construction.
-
----
-
-## 🧪 Testing & Sanitizers
-
-The CI pipeline runs the test suite under:
-
-- **ThreadSanitizer (TSan)** — detects data races
-- **AddressSanitizer (ASan)** — detects memory errors
-- **UndefinedBehaviorSanitizer (UBSan)** — detects undefined behaviour
-
-To run locally with sanitizers:
-
-```bash
-cmake -B build-tsan -DCMAKE_BUILD_TYPE=Debug \
-      -DCMAKE_CXX_FLAGS="-fsanitize=thread -g"
-cmake --build build-tsan
-cd build-tsan && ctest
-```
-
----
-
-## 📖 Further Reading
-
-- Erik Rigtorp, *A single producer single consumer wait-free and lock-free fixed size queue written in C++11*, [rigtorp GitHub repo](https://github.com/rigtorp/SPSCQueue)
-- Erik Rigtorp, *Optimizing a ring buffer for throughput*, [13 Dec 2021](https://rigtorp.se/ringbuffer/)
-- [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
-- Herb Sutter, [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
-- Peter Mbanugo, [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
-- Paul E. McKenney, *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, [Release v2023.06.11a](https://arxiv.org/abs/1701.00854)
-- Charles Frasch, *Single Producer Single Consumer Lock-free FIFO From the Ground Up, CppCon 2023*, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
-- Boost C++ Libraries, [SPSC Lock Free Queue](https://www.boost.org/doc/libs/latest/doc/html/lockfree/reference.html)
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🤝 Contributing
-
-Contributions, bug reports, and suggestions are welcome! Please open an issue or submit a pull request. Make sure your changes pass all existing tests and sanitizer runs before submitting.
+## References
++ 🎥 "Low-Latency Lock-Free Ring-Buffer in C - Lock Free Programming (Part #2)", [13 Mar 2024](https://www.youtube.com/watch?v=aYwmopy6cdY)
++ 🎥 "Single Producer Single Consumer Lock-free FIFO From the Ground Up", CppCon 2023, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
++ 🎥 "SPSC Queues: From Naive to Lock-Free", [24 Jan 2026](https://www.youtube.com/watch?v=PFxzyWMoG_A)
++ 🎥 "Trading at light speed: designing low latency systems in C++", Meeting C++ 2022, [2 Jan 2023](https://www.youtube.com/watch?v=8uAW5FQtcvE)
++ 🎥 "What is Low Latency C++? (Part 1)", CppNow 2023, [18 Aug 2023](https://www.youtube.com/watch?v=EzmNeAhWqVs)
++ 🎥 "What is Low Latency C++? (Part 2)", CppNow 2023, [18 Aug 2023](https://www.youtube.com/watch?v=5uIsadq-nyk)
++ 🎥 "When Nanoseconds Matter: Ultrafast Trading Systems in C++", CppCon 2024, [28 Feb 2025](https://www.youtube.com/watch?v=sX2nF1fW7kI)
++ Erik Rigtorp, "Optimizing a Ring Buffer for Throughput", [14 April 2026](https://rigtorp.se/ringbuffer/)
++ Erik Rigtorp, [SPSCQueue GitHub repo](https://github.com/rigtorp/SPSCQueue)
++ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", June 11, 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
++ "An Extensive Benchmark of C and C++ Hash Tables by Jackson Allan", [14 Apr 2026](https://jacksonallan.github.io/c_cpp_hash_tables_benchmark/)
