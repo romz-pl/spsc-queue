@@ -1,4 +1,4 @@
-# SPSC Lock-Free Queue
+# Introduction to SPSC Lock-Free Queue
 
 A **Single Producer – Single Consumer (SPSC) lock-free queue** implemented in C++17. Designed for high-performance, low-latency inter-thread communication without the overhead of mutexes or condition variables.
 
@@ -60,12 +60,8 @@ spsc-lock-free-queue/
 │   └── test_concurrent.cpp     # Stress tests (two threads)
 │
 ├── docs/
-|   ├── hft-pipeline-stage-[1-8].md
-|   ├── hft-queues-app-extended.md
-|   ├── hft-queues-app-short.md
-|   ├── hft-queue-size.md
-│   ├── spsc-design.md           # Detailed design notes & trade-offs
-│   ├── spsc-memory-ordering.md  # C++ memory model walk-through for this queue
+|   ├── *.md
+|   ├── *.svg
 |   ├── test_basic.md            # Description of basic tests
 |   └── test_concurrent.md       # Description of concurrent tests
 │
@@ -164,19 +160,6 @@ cmake -B build-tsan -DCMAKE_BUILD_TYPE=Debug \
 cmake --build build-tsan
 cd build-tsan && ctest
 ```
-
----
-
-## 📖 Further Reading
-
-- Erik Rigtorp, *A single producer single consumer wait-free and lock-free fixed size queue written in C++11*, [rigtorp GitHub repo](https://github.com/rigtorp/SPSCQueue)
-- Erik Rigtorp, *Optimizing a ring buffer for throughput*, [13 Dec 2021](https://rigtorp.se/ringbuffer/)
-- [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
-- Herb Sutter, [*"Lock-Free Programming"*, CppCon 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
-- Peter Mbanugo, [*"Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)"*](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
-- Paul E. McKenney, *"Is Parallel Programming Hard, And, If So, What Can You Do About It?"*, Book of 662 pages, [Release v2023.06.11a](https://arxiv.org/abs/1701.00854)
-- Charles Frasch, *Single Producer Single Consumer Lock-free FIFO From the Ground Up, CppCon 2023*, [22 Feb 2024](https://www.youtube.com/watch?v=K3P_Lmq6pw0)
-- Boost C++ Libraries, [SPSC Lock Free Queue](https://www.boost.org/doc/libs/latest/doc/html/lockfree/reference.html)
 
 ---
 
