@@ -18,6 +18,7 @@
 + [Vertical scaling in HFT](./doc/hft-scaling-vertical.md)
 + [Horizontal scaling in HFT](./doc/hft-scaling-horizontal.md)
 + [Measuring Execution Time in HFT](./doc/hft-execution-time.md)
++ [SPDLog Logger in HFT](./doc/hft-spdlog.md)
 
 
 ## High Frequency Trading Pipeline and SPSC
