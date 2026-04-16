@@ -72,7 +72,7 @@
 
 
 ## Monitoring and Observability in HFT
-+ [Grafana: pros and cons](./doc/hft-monitoring.md)
++ [Grafana: pros and cons](./doc/hft-monitoring-grafana.md)
 
 
 ## Message Queue Systems in HFT
