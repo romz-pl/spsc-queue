@@ -109,6 +109,9 @@
 + [Atomics vs. Mutexes in SPSC - Claude](./doc/spsc-atomics-mutexes-claude.md)
 + [Atomics vs. Mutexes in SPSC - ChatGPT](./doc/spsc-atomics-mutexes-chatgpt.md)
 
++ [QuestDB - Claude](./doc/questdb-database.md)
++ [QuestDB - ChatGPT](./doc/questdb-database-chatgpt.md)
+
 
 ---
 
