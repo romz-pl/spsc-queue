@@ -43,6 +43,7 @@
 + [Cache Pathologies in HFT Systems](./doc/hft-cache-pathologies.md)
 + [Rocky Linux for HFT](./doc/hft-rocky-linux.md)
 + [RHEL (Red Hat Enterprise Linux) for HFT](./doc/hft-rhel-linux.md)
++ [AlmaLinux for HFT](./doc/hft-alma-linux.md)
 
 
 ## Hardware in HFT
