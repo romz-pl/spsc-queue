@@ -41,6 +41,7 @@
 + [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./doc/hft-kernale-bypass.md)
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
 + [Cache Pathologies in HFT Systems](./doc/hft-cache-pathologies.md)
++ [Rocky Linux for HFT](./doc/hft-rocky-linux.md)
 
 
 ## Hardware in HFT
