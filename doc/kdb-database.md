@@ -25,7 +25,7 @@ KDB+ is a column-oriented time-series database developed by Kx Systems, built ar
 │  │  - Today's ticks      │  Subscribe  │  - Risk checks              │  │
 │  │  - VWAP, spreads      │             │  - Signal computation       │  │
 │  └───────────┬───────────┘             └──────────────┬──────────────┘  │
-│              │ EOD flush                               │                │
+│              │ EOD flush                              │                 │
 │              ▼                                        ▼                 │
 │  ┌───────────────────────┐             ┌─────────────────────────────┐  │
 │  │  HDB (Historical DB)  │             │  OMS / Execution Layer      │  │
