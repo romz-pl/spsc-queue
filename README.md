@@ -7,8 +7,7 @@
 + [Huge Pages & TLB in SPSC](./doc/spsc-tlb-and-huge-pages.md)
 + [Detailed Design Notes and Trade-Offs](./doc/spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./doc/spsc-memory-ordering.md)
-+ [Atomics vs. Mutexes in SPSC - Claude](./doc/spsc-atomics-mutexes-claude.md)
-+ [Atomics vs. Mutexes in SPSC - ChatGPT](./doc/spsc-atomics-mutexes-chatgpt.md)
++ [Atomics vs. Mutexes in SPSC](./doc/spsc-atomics-mutexes-claude.md)
 
 
 ## High Frequency Trading and SPSC
@@ -17,10 +16,6 @@
 + [Importance of queue size in HFT](./doc/hft-queue-size.md)
 + [Vertical scaling in HFT](./doc/hft-scaling-vertical.md)
 + [Horizontal scaling in HFT](./doc/hft-scaling-horizontal.md)
-+ [Measuring Execution Time in HFT](./doc/hft-execution-time.md)
-+ [SPDLog Logger in HFT](./doc/hft-spdlog.md)
-+ [NanoLog Logger in HFT](./doc/hft-nanolog.md)
-+ [Quill Logger in HFT](./doc/hft-quill.md)
 
 
 ## High Frequency Trading Pipeline and SPSC
@@ -58,6 +53,13 @@
 + [Compiler Optimization Techniques for C++ in HFT Systems](./doc/hft-compiler-optimization.md)
 
 
+## High Frequency Trading and Logging Libraries
++ [Quill Logger in HFT](./doc/hft-quill.md)
++ [NanoLog Logger in HFT](./doc/hft-nanolog.md)
++ [SPDLog Logger in HFT](./doc/hft-spdlog.md)
++ [Measuring Execution Time in HFT](./doc/hft-execution-time.md)
+
+
 ## Market Data Protocols
 + [High-Frequency Trading Protocols](./doc/hft-protocols.md)
 
@@ -73,6 +75,12 @@
 ## Tests for SPSC implemenation
 + [Description of Basic Tests](./doc/test_basic.md)
 + [Description of Concurrent Tests](./doc/test_concurrent.md)
+
+
+## Compare ChatGPT (OpenAI) with Claude (Anthropic)
++ [Atomics vs. Mutexes in SPSC - Claude](./doc/spsc-atomics-mutexes-claude.md)
++ [Atomics vs. Mutexes in SPSC - ChatGPT](./doc/spsc-atomics-mutexes-chatgpt.md)
+
 
 ---
 
