@@ -49,6 +49,7 @@
 + [Setup of x86-64 Linux HFT System](./doc/spsc-x86-64-setup.md)
 + [x86-64 vs. IBM POWER on Linux](./doc/spsc-x86-64-vs-ibm-power.md)
 
+
 ## Compiler Optimization in HFT
 + [Performance Analysis Tools for C++ HFT Systems](./doc/hft-performace-tools.md)
 + [Compiler Optimization Techniques for C++ in HFT Systems](./doc/hft-compiler-optimization.md)
@@ -71,8 +72,7 @@
 
 
 ## Monitoring and Observability in HFT
-+ [Grafana: pros and cons]((./doc/hft-monitoring.md)
-
++ [Grafana: pros and cons](./doc/hft-monitoring.md)
 
 
 ## Message Queue Systems in HFT
