@@ -29,7 +29,7 @@
 + [Stage 8: Any Thread → Logger](./doc/hft-pipeline-stage-8.md)
 
 
-## High Frequency Trading and Specific Data Structures
+## Specific Data Structures in HFT
 + [Order book architecture in HFT systems](./doc/hft-order-book.md)
 + [Matching Engine Architecture for HFT](./doc/hft-matching-engine.md)
 + [Intrusive Linked List for an HFT Order Queue](./doc/hft-intrusive-linked-list.md)
@@ -37,31 +37,36 @@
 + [Flat Hash Map + Sorted Intrusive Tree for an HFT Order Queue](./doc/hft-flat-hash-map.md)
 
 
-## High Frequency Trading and Operating System
+## Operating Systems in HFT
 + [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./doc/hft-kernale-bypass.md)
 + [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
 + [Cache Pathologies in HFT Systems](./doc/hft-cache-pathologies.md)
 
 
-## High Frequency Trading and Hardware
+## Hardware in HFT
 + [x86-64 CPUs for High-Frequency Trading](./doc/hft-cpu-and-cache.md)
 + [Setup of x86-64 Linux HFT System](./doc/spsc-x86-64-setup.md)
 + [x86-64 vs. IBM POWER on Linux](./doc/spsc-x86-64-vs-ibm-power.md)
 
-## High Frequency Trading and Compiler Optimization
+## Compiler Optimization in HFT
 + [Performance Analysis Tools for C++ HFT Systems](./doc/hft-performace-tools.md)
 + [Compiler Optimization Techniques for C++ in HFT Systems](./doc/hft-compiler-optimization.md)
 
 
-## High Frequency Trading and Logging Libraries
+## Logging Libraries in HFT
 + [Quill Logger in HFT](./doc/hft-quill.md)
 + [NanoLog Logger in HFT](./doc/hft-nanolog.md)
 + [SPDLog Logger in HFT](./doc/hft-spdlog.md)
 + [Measuring Execution Time in HFT](./doc/hft-execution-time.md)
 
 
-## Market Data Protocols
-+ [High-Frequency Trading Protocols](./doc/hft-protocols.md)
+## Market Data Protocols in HFT
++ [High-Frequency Trading Protocols](./doc/hft-protocols.md):
+  + FIX 5.0 (Financial Information eXchange)
+  + OUCH (NASDAQ Order Entry Protocol)
+  + ITCH 5.0 (NASDAQ Market Data Feed)
+  + PITCH (CBOE/BATS Market Data Protocol)
+  + SBE (Simple Binary Encoding)
 
 
 ## Message Queue Systems in HFT
