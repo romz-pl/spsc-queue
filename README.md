@@ -78,8 +78,10 @@
 + [Grafana: pros and cons](./doc/hft-monitoring-grafana.md)
 + [Prometheus: pros and cons](./doc/hft-monitoring-prometheus.md)
 
+
 ## Databases in HFT
 + [KDB+](./doc/kdb-database.md)
++ [QuestDB](./doc/questdb-database.md)
 
 
 ## Message Queue Systems in HFT
