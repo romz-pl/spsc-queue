@@ -44,6 +44,7 @@
 + [Rocky Linux for HFT](./doc/hft-rocky-linux.md)
 + [RHEL (Red Hat Enterprise Linux) for HFT](./doc/hft-rhel-linux.md)
 + [AlmaLinux for HFT](./doc/hft-alma-linux.md)
++ [Fedora Linux for HFT](./doc/hft-fedora-linux.md)
 
 
 ## Hardware in HFT
