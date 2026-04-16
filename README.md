@@ -78,6 +78,14 @@
 + [Kafka vs. Solace](./doc/hft-kafka-vs-solace.md)
 
 
+## My LinkedIn Posts Related to HFT
++ [Trading at light speed by David Gross, Meeting C++ 2022](https://github.com/romz-pl/posts-linkedin/blob/main/099-meetingcpp-low-latency/README.md)
++ [Lock-Free Single Producer Single Consumer FIFO, CppCon 2023](https://github.com/romz-pl/posts-linkedin/blob/main/098-cppcon-spsc-lock-free/README.md)
++ [Lock-Free Programming by Herb Sutter, CppCon 2014](https://github.com/romz-pl/posts-linkedin/blob/main/097-cppcon2014-lock-free/README.md)
++ [Microseconds matter. Ring Buffer (SPSC queue) by Erik Rigtorp](https://github.com/romz-pl/posts-linkedin/blob/main/100-spsc-by-rigtorp/README.md)
++ [Ultrafast Trading Systems by David Gross](https://github.com/romz-pl/posts-linkedin/blob/main/101-cppcon-ultrafast/README.md)
+
+
 ## Tests for SPSC implemenation
 + [Description of Basic Tests](./doc/test_basic.md)
 + [Description of Concurrent Tests](./doc/test_concurrent.md)
