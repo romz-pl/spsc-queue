@@ -38,13 +38,13 @@
 
 
 ## Operating Systems in HFT
-+ [Kernel Bypass in HFT: DPDK & Solarflare OpenOnload](./doc/hft-kernale-bypass.md)
-+ [CPU Pinning in HFT Systems](hft-cpu-pinning.md)
-+ [Cache Pathologies in HFT Systems](./doc/hft-cache-pathologies.md)
-+ [Rocky Linux for HFT](./doc/hft-rocky-linux.md)
-+ [RHEL (Red Hat Enterprise Linux) for HFT](./doc/hft-rhel-linux.md)
-+ [AlmaLinux for HFT](./doc/hft-alma-linux.md)
-+ [Fedora Linux for HFT](./doc/hft-fedora-linux.md)
++ [Kernel Bypass: DPDK & Solarflare OpenOnload](./doc/hft-kernale-bypass.md)
++ [CPU Pinning](hft-cpu-pinning.md)
++ [Cache Pathologies](./doc/hft-cache-pathologies.md)
++ [Rocky Linux](./doc/hft-rocky-linux.md)
++ [RHEL (Red Hat Enterprise Linux)](./doc/hft-rhel-linux.md)
++ [AlmaLinux](./doc/hft-alma-linux.md)
++ [Fedora Linux](./doc/hft-fedora-linux.md)
 
 
 ## Hardware in HFT
@@ -59,10 +59,10 @@
 
 
 ## Logging Libraries in HFT
-+ [Quill Logger in HFT](./doc/hft-quill.md)
-+ [NanoLog Logger in HFT](./doc/hft-nanolog.md)
-+ [SPDLog Logger in HFT](./doc/hft-spdlog.md)
-+ [Measuring Execution Time in HFT](./doc/hft-execution-time.md)
++ [Quill Logger(./doc/hft-quill.md)
++ [NanoLog Logger](./doc/hft-nanolog.md)
++ [SPDLog Logger](./doc/hft-spdlog.md)
++ [Measuring Execution Time](./doc/hft-execution-time.md)
 
 
 ## Market Data Protocols in HFT
@@ -78,12 +78,15 @@
 + [Grafana: pros and cons](./doc/hft-monitoring-grafana.md)
 + [Prometheus: pros and cons](./doc/hft-monitoring-prometheus.md)
 
+## Databases in HFT
++ [KDB+](./doc/kdb-database.md)
+
 
 ## Message Queue Systems in HFT
-+ [Apache Kafka in HFT Environments](./doc/hft-kafka-message.md)
-+ [Kafka's Role in HFT Environments](./doc/hft-kafka-role.md)
-+ [Solace PubSub+ in HFT Environments](./doc/hft-solace-message.md)
-+ [IBM MQ in HFT Environments](./doc/hft-ibm-mq-message.md)
++ [Apache Kafka](./doc/hft-kafka-message.md)
++ [Kafka's Role](./doc/hft-kafka-role.md)
++ [Solace PubSub+](./doc/hft-solace-message.md)
++ [IBM MQ](./doc/hft-ibm-mq-message.md)
 + [Kafka vs. Solace](./doc/hft-kafka-vs-solace.md)
 
 
