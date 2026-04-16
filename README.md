@@ -112,6 +112,9 @@
 + QuestDB
   + [QuestDB - Claude](./doc/questdb-database.md)
   + [QuestDB - ChatGPT](./doc/questdb-database-chatgpt.md)
++ SPSC queue size
+  + [Importance of queue size in HFT - Claude](./doc/hft-queue-size.md)
+  + [Importance of queue size in HFT - ChatGPT](./doc/hft-queue-size-chatgpt.md)
 
 
 ---
