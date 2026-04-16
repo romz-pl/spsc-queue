@@ -70,6 +70,11 @@
   + SBE (Simple Binary Encoding)
 
 
+## Monitoring and Observability in HFT
++ [Grafana: pros and cons]((./doc/hft-monitoring.md)
+
+
+
 ## Message Queue Systems in HFT
 + [Apache Kafka in HFT Environments](./doc/hft-kafka-message.md)
 + [Kafka's Role in HFT Environments](./doc/hft-kafka-role.md)
