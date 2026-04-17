@@ -98,6 +98,7 @@
 + [Lock-Free Programming by Herb Sutter, CppCon 2014](https://github.com/romz-pl/posts-linkedin/blob/main/097-cppcon2014-lock-free/README.md)
 + [Microseconds matter. Ring Buffer (SPSC queue) by Erik Rigtorp](https://github.com/romz-pl/posts-linkedin/blob/main/100-spsc-by-rigtorp/README.md)
 + [Ultrafast Trading Systems by David Gross](https://github.com/romz-pl/posts-linkedin/blob/main/101-cppcon-ultrafast/README.md)
++ [Unlocking Modern CPU Power by Fedor G Pikus](https://github.com/romz-pl/posts-linkedin/blob/main/102-cppnow-unlocking/README.md)
 
 
 ## Tests for SPSC implemenation
