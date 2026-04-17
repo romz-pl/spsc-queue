@@ -83,6 +83,7 @@
 + [KDB+](./doc/kdb-database.md)
 + [QuestDB](./doc/questdb-database.md)
 + [InfluxDB](./doc/influxdb-database.md)
++ [TimescaleDB](./doc/timescaledb-database.md)
 
 
 ## Message Queue Systems in HFT
