@@ -70,7 +70,7 @@
   + [FIX 5.0 (Financial Information eXchange)](./doc/protocol-fix.md)
   + [OUCH (NASDAQ Order Entry Protocol)](./doc/protocol-ouch.md)
   + [ITCH 5.0 (NASDAQ Market Data Feed)](./doc/protocol-itch.md)
-  + PITCH (CBOE/BATS Market Data Protocol)
+  + [PITCH (CBOE/BATS Market Data Protocol)](./doc/protocol-pitch.md)
   + SBE (Simple Binary Encoding)
 
 
