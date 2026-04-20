@@ -71,7 +71,7 @@
   + [OUCH (NASDAQ Order Entry Protocol)](./doc/protocol-ouch.md)
   + [ITCH 5.0 (NASDAQ Market Data Feed)](./doc/protocol-itch.md)
   + [PITCH (CBOE/BATS Market Data Protocol)](./doc/protocol-pitch.md)
-  + SBE (Simple Binary Encoding)
+  + [SBE (Simple Binary Encoding)](./doc/protocol-sbe.md)
 
 
 ## Monitoring and Observability in HFT
