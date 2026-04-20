@@ -59,7 +59,7 @@
 
 
 ## Logging Libraries in HFT
-+ [Quill Logger(./doc/hft-quill.md)
++ [Quill Logger](./doc/hft-quill.md)
 + [NanoLog Logger](./doc/hft-nanolog.md)
 + [SPDLog Logger](./doc/hft-spdlog.md)
 + [Measuring Execution Time](./doc/hft-execution-time.md)
