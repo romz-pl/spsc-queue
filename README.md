@@ -11,8 +11,8 @@
 
 
 ## High Frequency Trading and SPSC
-+ [Application in HFT](hft-queues-app-short.md)
-+ [Application in HFT: In-Depth Analysis](hft-queues-app-extended.md)
++ [Application in HFT](./doc/hft-queues-app-short.md)
++ [Application in HFT: In-Depth Analysis](./doc/hft-queues-app-extended.md)
 + [Importance of queue size in HFT](./doc/hft-queue-size.md)
 + [Vertical scaling in HFT](./doc/hft-scaling-vertical.md)
 + [Horizontal scaling in HFT](./doc/hft-scaling-horizontal.md)
@@ -39,7 +39,7 @@
 
 ## Operating Systems in HFT
 + [Kernel Bypass: DPDK & Solarflare OpenOnload](./doc/hft-kernale-bypass.md)
-+ [CPU Pinning](hft-cpu-pinning.md)
++ [CPU Pinning](./doc/hft-cpu-pinning.md)
 + [Cache Pathologies](./doc/hft-cache-pathologies.md)
 + [Rocky Linux](./doc/hft-rocky-linux.md)
 + [RHEL (Red Hat Enterprise Linux)](./doc/hft-rhel-linux.md)
