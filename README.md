@@ -105,6 +105,7 @@
 + [Ultrafast Trading Systems by David Gross](https://github.com/romz-pl/posts-linkedin/blob/main/101-cppcon-ultrafast/README.md)
 + [Unlocking Modern CPU Power by Fedor G Pikus](https://github.com/romz-pl/posts-linkedin/blob/main/102-cppnow-unlocking/README.md)
 + [C++ atomics, from basic to advanced by Fedor G Pikus](https://github.com/romz-pl/posts-linkedin/blob/main/107-cppcon-atomics/README.md)
++ [Every nanosecond counts. Lock-Free Ring Buffer by Joe Wood](https://github.com/romz-pl/posts-linkedin/blob/main/106-spsc-by-wood/README.md)
 
 
 ## Tests for SPSC implemenation
