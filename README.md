@@ -158,4 +158,9 @@
 + Peter Mbanugo, "Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)", [15 Apr 2026](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
 + [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
 + Boost C++ Libraries, [SPSC Lock Free Queue](https://www.boost.org/doc/libs/latest/doc/html/lockfree/reference.html)
++ [Dmitry Vyukov Implementation](https://github.com/couchbase/phosphor/blob/master/thirdparty/dvyukov/include/dvyukov/mpmc_bounded_queue.h)
++ [C implementation of Dmitry Vyukov's Bounded MPMC queue](https://github.com/b0bleet/cmpmc)
++ [Ode to a Vyukov Queue](https://int08h.com/post/ode-to-a-vyukov-queue/)
++ [Memory Bounds for Concurrent Bounded Queues](https://arxiv.org/pdf/2104.15003)
+
 
