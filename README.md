@@ -8,6 +8,7 @@
 + [Detailed Design Notes and Trade-Offs](./doc/spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./doc/spsc-memory-ordering.md)
 + [Atomics vs. Mutexes in SPSC](./doc/spsc-atomics-mutexes-claude.md)
++ [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
 
 
 ## High Frequency Trading and SPSC
