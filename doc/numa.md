@@ -12,13 +12,13 @@ Each processor package, together with its locally attached memory and interconne
 
 ```
 Socket 0                              Socket 1
-┌────────────────────────────┐        ┌────────────────────────────┐
+┌─────────────────────────────────┐  ┌─────────────────────────────────┐
 │  Core 0  Core 1  Core 2  Core 3 │  │  Core 4  Core 5  Core 6  Core 7 │
-│   L1/L2   L1/L2   L1/L2  L1/L2 │  │   L1/L2   L1/L2   L1/L2  L1/L2 │
+│   L1/L2   L1/L2   L1/L2  L1/L2  │  │   L1/L2   L1/L2   L1/L2  L1/L2  │
 │         Shared L3 Cache         │  │         Shared L3 Cache         │
 │        Memory Controller        │  │        Memory Controller        │
 │         Local DRAM (e.g. 64GB)  │  │         Local DRAM (e.g. 64GB)  │
-└────────────┬───────────────────┘  └──────────────┬─────────────────┘
+└────────────┬────────────────────┘  └──────────────┬──────────────────┘
              │                                      │
              └──────────── Interconnect ────────────┘
                      (QPI / UPI / AMD IF)
