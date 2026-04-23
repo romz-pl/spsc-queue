@@ -9,6 +9,7 @@
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./doc/spsc-memory-ordering.md)
 + [Atomics vs. Mutexes in SPSC](./doc/spsc-atomics-mutexes-claude.md)
 + [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
++ [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
 
 
 ## High Frequency Trading and SPSC
