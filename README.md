@@ -97,6 +97,11 @@
 + [Kafka vs. Solace](./doc/hft-kafka-vs-solace.md)
 
 
+## Multi Producer Multi Consumer (MPMC)
++ [Thorough Overview](./doc/mpmc-thorough-description.md)
++ [Detailed Design Breakdown](./doc/mpmc-implementation.md)
+
+
 ## C++ Specific Problems
 + [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
 + [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
