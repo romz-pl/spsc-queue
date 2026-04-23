@@ -149,7 +149,7 @@ namespace mpmc {
  *   (intptr_t) casts preserve sign, this correctly handles the wrap-around
  *   case after ~2^63 operations without any special-casing.
  */
-template<RingBufferElement T, std::size_t Capacity>
+template<detail::RingBufferElement T, std::size_t Capacity>
     requires detail::PowerOfTwo<Capacity>
 class MPMCRingBuffer {
 public:
