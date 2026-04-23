@@ -97,7 +97,7 @@
 + [Kafka vs. Solace](./doc/hft-kafka-vs-solace.md)
 
 
-## C++ specific problems
+## C++ Specific Problems
 + [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
 + [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
 + [Static and Dynamic Inheritance in C++](./doc/static-dynamic.md)
