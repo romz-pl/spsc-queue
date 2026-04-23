@@ -10,6 +10,7 @@
 + [Atomics vs. Mutexes in SPSC](./doc/spsc-atomics-mutexes-claude.md)
 + [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
 + [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
++ [Static and Dynamic Inheritance in C++](./doc/static-dynamic.md)
 
 
 ## High Frequency Trading and SPSC
