@@ -1,6 +1,7 @@
-SET( EXE_NAME spsc-demo )
-
-add_executable( ${EXE_NAME}
-    main.cpp
+add_executable( spsc-demo
+    spsc-main.cpp
 )
 
+add_executable( mpmc-demo
+    mpmc-main.cpp
+)
