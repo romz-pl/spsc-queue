@@ -51,6 +51,7 @@
 + [x86-64 CPUs for High-Frequency Trading](./doc/hft-cpu-and-cache.md)
 + [Setup of x86-64 Linux HFT System](./doc/spsc-x86-64-setup.md)
 + [x86-64 vs. IBM POWER on Linux](./doc/spsc-x86-64-vs-ibm-power.md)
++ [Non-Uniform Memory Access (NUMA) Architecture](./doc/numa.md)
 
 
 ## Compiler Optimization in HFT
