@@ -8,9 +8,6 @@
 + [Detailed Design Notes and Trade-Offs](./doc/spsc-design.md)
 + [Memory Ordering in SPSC Lock-Free Ring Buffers](./doc/spsc-memory-ordering.md)
 + [Atomics vs. Mutexes in SPSC](./doc/spsc-atomics-mutexes-claude.md)
-+ [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
-+ [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
-+ [Static and Dynamic Inheritance in C++](./doc/static-dynamic.md)
 
 
 ## High Frequency Trading and SPSC
@@ -98,6 +95,12 @@
 + [Solace PubSub+](./doc/hft-solace-message.md)
 + [IBM MQ](./doc/hft-ibm-mq-message.md)
 + [Kafka vs. Solace](./doc/hft-kafka-vs-solace.md)
+
+
+## C++ specific problems
++ [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
++ [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
++ [Static and Dynamic Inheritance in C++](./doc/static-dynamic.md)
 
 
 ## My LinkedIn Posts Related to HFT
