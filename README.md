@@ -101,6 +101,7 @@
 + [The ABA Problem in Lock-Free Data Structures](./doc/aba-problem.md)
 + [In C++: `volatile` vs. `std::atomic`](./doc/volatile.md)
 + [Static and Dynamic Inheritance in C++](./doc/static-dynamic.md)
++ [Static Inheritance in C++: A Deep Technical Analysis](./doc/static-size.md)
 
 
 ## My LinkedIn Posts Related to HFT
