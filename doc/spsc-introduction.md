@@ -96,6 +96,7 @@ cmake --build build
 
 ```bash
 ./build/src/spsc-demo
+./build/src/mpmc-demo
 ```
 
 ### Run the tests
