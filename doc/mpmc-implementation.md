@@ -1,16 +1,4 @@
-# Detailed design breakdown
-
-
-![Memory layout](./memory-layout.png)
-
-![State Machine](./state-machine.png)
-
-![Diff Logic](./diff-logic.png)
-
-![Memory ordering](./memory-ordering.png)
-
-![Trade Offs](./trade-offs.png)
-
+# Multiple Producer Multiple Consumer (MPMC) - Detailed Design Breakdown
 
 ---
 
@@ -36,6 +24,8 @@ Three physically separated regions exist in the object (see the "Memory layout" 
 
 Each slot is padded to fill at least one full cache line (`alignas(64)`). Without this, two producers racing on adjacent slots would share a line and trigger exactly the same ping-pong. For small `T` (a pointer, a 32-byte market event), the padding wastes space but the latency savings are not optional in HFT.
 
+![Memory layout](./memory-layout.png)
+
 ---
 
 ## Memory ordering — minimum viable, not conservative
@@ -44,11 +34,15 @@ The ordering discipline is precise and intentional (see the "Memory ordering" ta
 
 The `sequence` acquire load (before claiming a slot) synchronises-with the `sequence` release store (after writing or consuming the slot). This single acquire/release pair establishes the happens-before edge that makes the payload visible. The CAS on `head_` and `tail_` uses `relaxed/relaxed` because it only needs to atomically advance the cursor — no payload ordering is needed from it. Using `acq/rel` on the CAS would be correct but wasteful: it would drain the store buffer unnecessarily and add 5–15 ns on x86 with no benefit.
 
+![Memory ordering](./memory-ordering.png)
+
 ---
 
 ## Spin discipline and the PAUSE instruction
 
 The blocking `push` / `pop` use `_mm_pause()` (PAUSE on x86, YIELD on ARM) between retries. This is not a yield to the OS scheduler — it is a CPU hint. PAUSE serves two purposes. First, it prevents the store-buffer speculation that causes a machine-clear penalty when the spin loop repeatedly reads a cache line that another core is about to write. Second, it signals to SMT/hyper-threading hardware that this logical core is spinning, allowing the sibling thread to steal pipeline resources. In HFT the goal is to keep the core warm and the OS out of the picture; a `std::this_thread::yield()` would introduce microsecond-scale OS scheduler latency jitter that is unacceptable.
+
+![Trade Offs](./trade-offs.png)
 
 ---
 
@@ -63,6 +57,12 @@ The blocking `push` / `pop` use `_mm_pause()` (PAUSE on x86, YIELD on ARM) betwe
 **Batch operations** (`try_push_bulk` / `try_pop_bulk`) amortise per-item overhead. The current implementation is a simple loop. A more aggressive optimisation would reserve a contiguous range of slots with a single wide CAS on `head_` (claiming `head_` to `head_ + N` atomically), then write all slots in parallel without contention. This is left as a comment in the code because it complicates the sequence-number invariants considerably and is rarely the bottleneck for realistic HFT batch sizes.
 
 **NUMA** is the primary unaddressed concern. A single `MPMCRingBuffer` will be allocated on whatever NUMA node its constructing thread resides on. Producers and consumers on remote nodes pay a 60–100 ns remote-memory penalty per access. The solution is to allocate with `numa_alloc_onnode` (Linux) and pin producer/consumer threads to the same physical socket — architecture-level decisions that sit above this data structure.
+
+
+
+![State Machine](./state-machine.png)
+
+![Diff Logic](./diff-logic.png)
 
 ---
 
