@@ -17,6 +17,7 @@
 + [Vertical scaling in HFT](./doc/hft-scaling-vertical.md)
 + [Horizontal scaling in HFT](./doc/hft-scaling-horizontal.md)
 + [Message Passing Interface (MPI) in HFT](./doc/hft-mpi.md)
++ [Five Leading commercial HFT platforms](./doc/hft-commercial.md)
 
 
 ## High Frequency Trading Pipeline and SPSC
