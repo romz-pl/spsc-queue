@@ -168,7 +168,9 @@
 + [Memory Bounds for Concurrent Bounded Queues](https://arxiv.org/pdf/2104.15003)
 
 ### Books
-+ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", June 11, 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
++ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", 18 December 2025, [Release v2025.12.18a](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.2025.12.18a.pdf)
++ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", 11 June 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
 + Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", [GitHub repository for the book](https://github.com/paulmckrcu/perfbook)
++ [Paul E. McKenney Home Web Page](http://www2.rdrop.com/~paulmck/)
 
 
