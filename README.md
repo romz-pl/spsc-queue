@@ -54,6 +54,7 @@
 + [Setup of x86-64 Linux HFT System](./doc/spsc-x86-64-setup.md)
 + [x86-64 vs. IBM POWER on Linux](./doc/spsc-x86-64-vs-ibm-power.md)
 + [Non-Uniform Memory Access (NUMA) Architecture](./doc/numa.md)
++ [Cache Coherency - Intel CPUs](./doc/cache-coherency-intel.md)
 + [Cache Coherence Across NUMA Nodes](./doc/cache-coherence.md)
 
 
