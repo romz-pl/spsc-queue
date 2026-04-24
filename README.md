@@ -55,6 +55,7 @@
 + [x86-64 vs. IBM POWER on Linux](./doc/spsc-x86-64-vs-ibm-power.md)
 + [Non-Uniform Memory Access (NUMA) Architecture](./doc/numa.md)
 + [Cache Coherency - Intel CPUs](./doc/cache-coherency-intel.md)
++ [Cache Coherency - AMD CPUs](./doc/cache-coherency-amd.md)
 + [Cache Coherence Across NUMA Nodes](./doc/cache-coherence.md)
 
 
