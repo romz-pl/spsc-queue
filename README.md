@@ -170,6 +170,7 @@
 + [C implementation of Dmitry Vyukov's Bounded MPMC queue](https://github.com/b0bleet/cmpmc)
 + [Ode to a Vyukov Queue](https://int08h.com/post/ode-to-a-vyukov-queue/)
 + [Memory Bounds for Concurrent Bounded Queues](https://arxiv.org/pdf/2104.15003)
++ JF Bastien, [Deprecating volatile](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1152r0.html), Published Proposal, 1 Oct 2018
 
 ### Books
 + Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", 18 December 2025, [Release v2025.12.18a](https://mirrors.edge.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.2025.12.18a.pdf)
