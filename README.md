@@ -142,6 +142,9 @@
 ---
 
 ## 📖 References
+
+### Video Presentations
+
 + 🎥 "Lock-Free Programming (or, Juggling Razor Blades), Part I", [16 Oct 2014](https://www.youtube.com/watch?v=c1gO9aB9nbs)
 + 🎥 "Lock-Free Programming (or, Juggling Razor Blades), Part II", [16 Oct 2014](https://www.youtube.com/watch?v=CmxkPChOcvw)
 + 🎥 "Low-Latency Lock-Free Ring-Buffer in C - Lock Free Programming (Part #2)", [13 Mar 2024](https://www.youtube.com/watch?v=aYwmopy6cdY)
@@ -151,10 +154,11 @@
 + 🎥 "What is Low Latency C++? (Part 1)", CppNow 2023, [18 Aug 2023](https://www.youtube.com/watch?v=EzmNeAhWqVs)
 + 🎥 "What is Low Latency C++? (Part 2)", CppNow 2023, [18 Aug 2023](https://www.youtube.com/watch?v=5uIsadq-nyk)
 + 🎥 "When Nanoseconds Matter: Ultrafast Trading Systems in C++", CppCon 2024, [28 Feb 2025](https://www.youtube.com/watch?v=sX2nF1fW7kI)
+
+### Articles and Software
 + Erik Rigtorp, "Optimizing a Ring Buffer for Throughput", [14 April 2026](https://rigtorp.se/ringbuffer/)
 + Erik Rigtorp, [SPSCQueue GitHub repo](https://github.com/rigtorp/SPSCQueue)
 + Jackson Allan, "An Extensive Benchmark of C and C++ Hash Tables", [14 Apr 2026](https://jacksonallan.github.io/c_cpp_hash_tables_benchmark/)
-+ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", June 11, 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
 + Peter Mbanugo, "Building a Lock-Free Single Producer, Single Consumer Queue (FIFO)", [15 Apr 2026](https://pmbanugo.me/blog/building-lock-free-spsc-queue)
 + [C++ Memory Model (cppreference)](https://en.cppreference.com/w/cpp/atomic/memory_order)
 + Boost C++ Libraries, [SPSC Lock Free Queue](https://www.boost.org/doc/libs/latest/doc/html/lockfree/reference.html)
@@ -162,5 +166,9 @@
 + [C implementation of Dmitry Vyukov's Bounded MPMC queue](https://github.com/b0bleet/cmpmc)
 + [Ode to a Vyukov Queue](https://int08h.com/post/ode-to-a-vyukov-queue/)
 + [Memory Bounds for Concurrent Bounded Queues](https://arxiv.org/pdf/2104.15003)
+
+### Books
++ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", June 11, 2023, [Release v2023.06.11a](https://arxiv.org/pdf/1701.00854)
++ Paul E. McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", [GitHub repository for the book](https://github.com/paulmckrcu/perfbook)
 
 
